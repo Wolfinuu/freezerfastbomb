@@ -1,0 +1,72 @@
+{
+    "freezer_info": {
+        "model_name": "FAST BOMBAS Freezer Model X",
+        "location": "FAST BOMBAS",
+        "operator_name": "Fast Bombas Operador",
+        "operator_contact": "operador@fastbombas.com"
+    },
+    "temperature_thresholds": {
+        "evaporator": {
+            "min": -25.0,
+            "max": -15.0,
+            "critical_high": -10.0,
+            "critical_low": -30.0
+        },
+        "condenser": {
+            "min": 20.0,
+            "max": 40.0,
+            "critical_high": 50.0,
+            "critical_low": 15.0
+        },
+        "ambient": {
+            "min": 18.0,
+            "max": 30.0,
+            "critical_high": 35.0,
+            "critical_low": 10.0
+        }
+    },
+    "data_collection": {
+        "reading_interval_seconds": 5,
+        "chart_refresh_interval_seconds": 5,
+        "max_data_points_display": 30,
+        "max_historical_records": 10000
+    },
+    "alert_settings": {
+        "enable_email_alerts": true,
+        "alert_cooldown_seconds": 300,
+        "consecutive_readings_trigger": 2
+    },
+    "email_config": {
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "",
+        "sender_password": "",
+        "recipient_emails": [],
+        "use_tls": true
+    },
+    "data_logging": {
+        "enable_csv_logging": true,
+        "csv_file_path": "data/temperature_logs.csv",
+        "retention_days": 30,
+        "auto_export_enabled": false,
+        "export_interval_hours": 24
+    },
+    "simulation": {
+        "normal_temp_evaporator_min": -20.0,
+        "normal_temp_evaporator_max": -15.0,
+        "failure_probability": 0.05,
+        "failure_duration_seconds": 60,
+        "temp_variation_range": 0.5
+    },
+    "ui_settings": {
+        "dashboard_title": "FAST BOMBAS - Sistema de Monitoramento Térmico",
+        "temperature_unit": "Celsius",
+        "show_advanced_metrics": true,
+        "theme_color": "blue"
+    },
+    "system_metadata": {
+        "config_version": "1.0",
+        "last_modified": "2025-10-29T02:39:05.124271",
+        "created_date": "2025-10-29T02:39:05.124266"
+    }
+}
