@@ -129,7 +129,7 @@ def show_data_export_panel(logger: DataLogger, config: ConfigManager):
         df = st.session_state.historical_df
         display_df = df.copy()
         display_df['timestamp'] = pd.to_datetime(display_df['timestamp']).dt.strftime('%Y-%m-%d %H:%M:%S')
-        st.dataframe(display_df, use_container_width=True, height=400)
+        st.dataframe(display_df, width=True, height=400)
         csv = display_df.to_csv(index=False)
         st.download_button(
             label="Baixar Visualização Atual como CSV",
