@@ -4,6 +4,7 @@ Exibe status do sistema, diagnósticos e informações
 """
 
 import streamlit as st
+from zoneinfo import ZoneInfo
 from datetime import datetime
 import os
 from config_manager import ConfigManager

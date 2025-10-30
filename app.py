@@ -6,6 +6,7 @@ Aplicação Principal do Dashboard Streamlit
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
+from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
 import time
 import pandas as pd
@@ -79,7 +80,7 @@ def initialize_session_state():
         st.session_state.current_status = None
     
     if 'last_update' not in st.session_state:
-        st.session_state.last_update = datetime.now()
+        st.session_state.last_update = datetime.now(ZoneInfo("America/Sao_Paulo"))
 
 initialize_session_state()
 
@@ -219,7 +220,7 @@ def update_data():
     # Atualizar estado da sessão
     st.session_state.current_reading = reading
     st.session_state.current_status = status
-    st.session_state.last_update = datetime.now()
+    st.session_state.last_update = datetime.now(ZoneInfo("America/Sao_Paulo"))
 
 # Dashboard Principal
 def main_dashboard():

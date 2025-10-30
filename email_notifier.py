@@ -6,6 +6,7 @@ Handles automated email alerts for critical temperature events
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
 from typing import Dict, List
 from config_manager import ConfigManager
@@ -65,7 +66,7 @@ class EmailNotifier:
         if alert_key not in self.last_alert_time:
             return True
         
-        time_since_last = datetime.now() - self.last_alert_time[alert_key]
+        time_since_last = datetime.now(ZoneInfo("America/Sao_Paulo")) - self.last_alert_time[alert_key]
         return time_since_last.total_seconds() >= cooldown_seconds
     
     def _update_consecutive_count(self, zone: str, is_critical: bool):
@@ -310,7 +311,7 @@ Este é um alerta automático do Sistema de Monitoramento de Freezer FAST BOMBAS
             server.quit()
             
             # Update last alert time
-            self.last_alert_time[alert_key] = datetime.now()
+            self.last_alert_time[alert_key] = datetime.now(ZoneInfo("America/Sao_Paulo"))
             
             print(f"E-mail de alerta enviado com sucesso para {len(recipients)} destinatário(s)")
             return True

@@ -5,6 +5,7 @@ Handles all system configuration settings with JSON persistence
 
 import json
 import os
+from zoneinfo import ZoneInfo
 from datetime import datetime
 from typing import Dict, Any
 
@@ -112,8 +113,8 @@ class ConfigManager:
             # System Metadata
             "system_metadata": {
                 "config_version": "1.0",
-                "last_modified": datetime.now().isoformat(),
-                "created_date": datetime.now().isoformat()
+                "last_modified": datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(),
+                "created_date": datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat()
             }
         }
     
@@ -177,7 +178,7 @@ class ConfigManager:
         
         try:
             # Update last modified timestamp
-            config["system_metadata"]["last_modified"] = datetime.now().isoformat()
+            config["system_metadata"]["last_modified"] = datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat()
             
             # Ensure directory exists
             os.makedirs(os.path.dirname(self.config_file) if os.path.dirname(self.config_file) else ".", exist_ok=True)

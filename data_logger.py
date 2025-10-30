@@ -5,6 +5,7 @@ Handles CSV logging and historical data management for temperature readings
 
 import os
 import csv
+from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
 from typing import Dict, List
 import pandas as pd
@@ -109,7 +110,7 @@ class DataLogger:
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             
             # Filter by time range
-            cutoff_time = datetime.now() - timedelta(hours=hours)
+            cutoff_time = datetime.now(ZoneInfo("America/Sao_Paulo")) - timedelta(hours=hours)
             df = df[df['timestamp'] >= cutoff_time]
             
             # Sort by timestamp
@@ -220,7 +221,7 @@ class DataLogger:
             df['timestamp'] = pd.to_datetime(df['timestamp'])
             
             # Filter data within retention period
-            cutoff_date = datetime.now() - timedelta(days=retention_days)
+            cutoff_date = datetime.now(ZoneInfo("America/Sao_Paulo")) - timedelta(days=retention_days)
             df = df[df['timestamp'] >= cutoff_date]
             
             # Save cleaned data

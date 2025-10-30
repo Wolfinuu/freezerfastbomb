@@ -6,6 +6,7 @@ Fornece UI para ajustar todas as configurações do sistema
 import streamlit as st
 from config_manager import ConfigManager
 import os
+from zoneinfo import ZoneInfo
 from datetime import datetime
 
 def show_configuration_panel(config: ConfigManager):
@@ -425,7 +426,8 @@ def show_configuration_panel(config: ConfigManager):
         
         with col2:
             if st.button("Exportar Configuração", key="export_config"):
-                export_path = f"freezer_config_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                export_path = f"freezer_config_backup_{datetime.now(ZoneInfo("America/Sao_Paulo"))
+.strftime('%Y%m%d_%H%M%S')}.json"
                 if config.export_config(export_path):
                     st.success(f"✓ Configuração exportada para {export_path}")
         
@@ -433,7 +435,8 @@ def show_configuration_panel(config: ConfigManager):
             st.download_button(
                 "Baixar Arquivo de Config",
                 data=open('freezer_config.json', 'r').read() if os.path.exists('freezer_config.json') else "",
-                file_name=f"freezer_config_{datetime.now().strftime('%Y%m%d')}.json",
+                file_name=f"freezer_config_{datetime.now(ZoneInfo("America/Sao_Paulo"))
+.strftime('%Y%m%d')}.json",
                 mime="application/json",
                 disabled=not os.path.exists('freezer_config.json')
             )

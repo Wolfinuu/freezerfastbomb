@@ -6,6 +6,7 @@ Mimics Arduino serial output behavior in pure Python
 
 import random
 import time
+from zoneinfo import ZoneInfo
 from datetime import datetime
 from typing import Dict, Tuple
 from config_manager import ConfigManager
@@ -157,7 +158,7 @@ class TemperatureSimulator:
         
         # Create reading data structure
         reading = {
-            'timestamp': datetime.now(),
+            'timestamp': datetime.now(ZoneInfo("America/Sao_Paulo")),
             'evaporator_temp': round(evaporator_temp, 2),
             'condenser_temp': round(condenser_temp, 2),
             'ambient_temp': round(ambient_temp, 2),

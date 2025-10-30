@@ -5,6 +5,7 @@ Fornece UI para exportar e gerenciar dados históricos
 
 import streamlit as st
 import pandas as pd
+from zoneinfo import ZoneInfo
 from datetime import datetime
 from data_logger import DataLogger
 from config_manager import ConfigManager
@@ -75,7 +76,8 @@ def show_data_export_panel(logger: DataLogger, config: ConfigManager):
     with col2:
         export_filename = st.text_input(
             "Nome do Arquivo de Exportação",
-            value=f"exportacao_temperatura_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+            value=f"exportacao_temperatura_{datetime.now(ZoneInfo("America/Sao_Paulo"))
+.strftime('%Y%m%d_%H%M%S')}.csv",
             help="Nome para o arquivo CSV exportado"
         )
     
@@ -132,7 +134,8 @@ def show_data_export_panel(logger: DataLogger, config: ConfigManager):
         st.download_button(
             label="Baixar Visualização Atual como CSV",
             data=csv,
-            file_name=f"dados_historicos_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+            file_name=f"dados_historicos_{datetime.now(ZoneInfo("America/Sao_Paulo"))
+.strftime('%Y%m%d_%H%M%S')}.csv",
             mime="text/csv"
         )
     
