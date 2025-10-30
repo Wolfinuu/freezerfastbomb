@@ -281,11 +281,7 @@ def main_dashboard():
             evap_thresholds['min'],
             evap_thresholds['max']
         )
-        st.plotly_chart(
-            fig_evap,
-            width='stretch',
-            config={"displayModeBar": False}
-        )
+        st.plotly_chart(fig_evap, use_container_width=True)
         st.markdown(f"Status: {get_status_badge(status['evaporator'])}", unsafe_allow_html=True)
     
     # Medidor do condensador
@@ -301,11 +297,7 @@ def main_dashboard():
             cond_thresholds['min'],
             cond_thresholds['max']
         )
-        st.plotly_chart(
-            fig_evap,
-            width='stretch',
-            config={"displayModeBar": False}
-        )
+        st.plotly_chart(fig_cond, use_container_width=True)
         st.markdown(f"Status: {get_status_badge(status['condenser'])}", unsafe_allow_html=True)
     
     # Medidor ambiente
@@ -321,11 +313,7 @@ def main_dashboard():
             amb_thresholds['min'],
             amb_thresholds['max']
         )
-        st.plotly_chart(
-            fig_evap,
-            width='stretch',
-            config={"displayModeBar": False}
-        )
+        st.plotly_chart(fig_amb, use_container_width=True)
         st.markdown(f"Status: {get_status_badge(status['ambient'])}", unsafe_allow_html=True)
     
     st.markdown("---")
@@ -338,11 +326,7 @@ def main_dashboard():
     
     if not recent_df.empty:
         trend_fig = create_trend_chart(recent_df)
-        st.plotly_chart(
-            fig_evap,
-            width='stretch',
-            config={"displayModeBar": False}
-        )
+        st.plotly_chart(trend_fig, use_container_width=True)
     else:
         st.info("Nenhum dado histórico disponível ainda. Os dados aparecerão conforme as leituras forem coletadas.")
     
@@ -356,7 +340,7 @@ def main_dashboard():
         if alerts:
             alert_df = pd.DataFrame(alerts)
             alert_df['timestamp'] = pd.to_datetime(alert_df['timestamp']).dt.strftime('%Y-%m-%d %H:%M:%S')
-            st.dataframe(alert_df, width='stretch')
+            st.dataframe(alert_df, use_container_width=True)
         else:
             st.success("Nenhum alerta nas últimas 2 horas - Sistema operando normalmente!")
     
