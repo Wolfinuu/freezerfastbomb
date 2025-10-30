@@ -1,195 +1,193 @@
-# FAST BOMBAS - Freezer Thermal Control System
+# FAST BOMBAS - Sistema de Controle Térmico de Freezers
 
-A comprehensive Python-based monitoring system for industrial freezers featuring real-time temperature monitoring, automated alerts, and historical data logging.
+Um sistema completo de monitoramento para freezers industriais desenvolvido em Python, com acompanhamento de temperatura em tempo real, alertas automáticos e registro histórico de dados.
 
-## Features
+## Funcionalidades
 
-- **Real-Time Monitoring**: Live temperature tracking across three zones (Evaporator, Condenser, Ambient)
-- **Interactive Dashboard**: Professional web interface built with Streamlit
-- **Visual Indicators**: Temperature gauges with color-coded status indicators
-- **Trend Charts**: Historical temperature visualization with configurable time ranges
-- **Automated Alerts**: Email notifications for critical temperature events
-- **Data Logging**: CSV export and historical data management
-- **Fully Configurable**: All thresholds, intervals, and settings customizable through the UI
-- **Simulation Mode**: Built-in temperature simulator for testing without hardware
+- **Monitoramento em Tempo Real**: Acompanha temperaturas ao vivo em três zonas (Evaporador, Condensador e Ambiente)  
+- **Painel Interativo**: Interface web profissional desenvolvida com Streamlit  
+- **Indicadores Visuais**: Medidores de temperatura com indicadores de status coloridos  
+- **Gráficos de Tendência**: Visualização histórica de temperatura com intervalos configuráveis  
+- **Alertas Automáticos**: Notificações por e-mail em eventos de temperatura crítica  
+- **Registro de Dados**: Exportação em CSV e gerenciamento de históricos  
+- **Totalmente Configurável**: Todos os limites, intervalos e ajustes disponíveis na interface  
+- **Modo de Simulação**: Simulador interno de temperatura para testes sem hardware real  
 
-## System Requirements
+## Requisitos do Sistema
 
-- Python 3.11+
-- Streamlit
-- Plotly
-- Pandas
+- Python 3.11+  
+- Streamlit  
+- Plotly  
+- Pandas  
 
-## Installation
+## Instalação
 
-1. All required packages are already installed in this Replit environment
+1. Todos os pacotes necessários já estão instalados neste ambiente Replit.  
+2. O sistema é configurado para ser executado automaticamente pelo fluxo **Server**.  
 
-2. The system is configured to run automatically with the Server workflow
+## Configuração
 
-## Configuration
+### Configuração de Alertas por E-mail
 
-### Setting Up Email Alerts
+Por segurança, a senha SMTP deve ser configurada como uma variável de ambiente:
 
-For security, the SMTP password must be set as an environment variable:
+- Key: `SMTP_PASSWORD`  
+ - Value: sua senha SMTP ou senha de aplicativo do e-mail  
 
-1. Go to the Replit Secrets panel (Tools > Secrets)
-2. Add a new secret:
-   - Key: `SMTP_PASSWORD`
-   - Value: Your SMTP email password or app-specific password
+**Notas importantes de segurança:**  
+- Nunca armazene senhas em arquivos de configuração  
+- Utilize senhas de aplicativo sempre que possível (Gmail, Outlook, etc.)  
+- O sistema só enviará alertas se a variável de ambiente `SMTP_PASSWORD` estiver definida  
 
-**Important Security Notes:**
-- Never store passwords in configuration files
-- Use app-specific passwords when possible (Gmail, Outlook, etc.)
-- The system will only send alerts if the SMTP_PASSWORD environment variable is set
+### Configurando os Limites de Temperatura
 
-### Configuring Temperature Thresholds
+1. Abra o Painel  
+2. Vá até a página **Configurações**  
+3. Acesse a aba **Limites de Temperatura**  
+4. Configure os seguintes parâmetros para cada zona:  
+   - **Normal Mín/Máx**: Faixa operacional normal  
+   - **Crítico Baixo/Alto**: Limites que disparam os alertas  
 
-1. Open the Dashboard
-2. Navigate to **Configuration** page
-3. Go to **Temperature Thresholds** tab
-4. Set the following for each zone:
-   - **Normal Min/Max**: Operating range for normal conditions
-   - **Critical Low/High**: Thresholds that trigger alerts
+### Configuração de Destinatários de E-mail
 
-### Setting Up Email Recipients
+1. Vá em **Configurações** > **Alertas por E-mail**  
+2. Insira os endereços de e-mail dos destinatários (um por linha)  
+3. Configure as opções SMTP:  
+   - Servidor SMTP (ex: `smtp.gmail.com`)  
+   - Porta SMTP (geralmente 587)  
+   - Endereço de e-mail do remetente  
+4. Salve as configurações  
 
-1. Go to **Configuration** > **Email Alerts**
-2. Enter recipient email addresses (one per line)
-3. Configure SMTP settings:
-   - SMTP Server (e.g., smtp.gmail.com)
-   - SMTP Port (usually 587)
-   - Sender Email Address
-4. Save configuration
+## Uso
 
-## Usage
+### Visão Geral do Painel
 
-### Dashboard Overview
+O painel principal exibe:  
+- **Status do Sistema**: Saúde geral e modo de operação  
+- **Medidores de Temperatura**: Leituras em tempo real das três zonas  
+- **Indicadores de Status**: Cores de status (Verde = OK, Amarelo = Aviso, Vermelho = Crítico)  
+- **Tendências de Temperatura**: Gráfico histórico com as últimas 30 leituras  
+- **Histórico de Alertas**: Registros recentes de avisos e eventos críticos  
 
-The main dashboard displays:
-- **System Status**: Overall health and operational mode
-- **Temperature Gauges**: Real-time readings for all three zones
-- **Status Indicators**: Color-coded status (Green=OK, Yellow=Warning, Red=Critical)
-- **Temperature Trends**: Historical chart showing last 30 readings
-- **Alert History**: Recent warning and critical events
+### Navegação
 
-### Navigation
+- **Painel**: Interface principal de monitoramento  
+- **Configurações**: Ajustes gerais e personalização do sistema  
+- **Exportar Dados**: Exportação de históricos em CSV  
+- **Informações do Sistema**: Diagnósticos e detalhes técnicos  
 
-- **Dashboard**: Main monitoring interface
-- **Configuration**: All system settings and customization
-- **Data Export**: Export historical data to CSV
-- **System Info**: System diagnostics and information
+### Personalização de Configurações
 
-### Customizing Settings
+Todas as configurações podem ser feitas na página **Configurações**:
 
-All settings can be customized through the Configuration page:
+1. **Informações do Freezer**: Modelo, localização e operador responsável  
+2. **Limites de Temperatura**: Faixas mínimas, máximas e críticas por zona  
+3. **Coleta de Dados**: Intervalos de leitura e atualização dos gráficos  
+4. **Alertas por E-mail**: Configuração SMTP, tempo de espera e gatilhos de alerta  
+5. **Registro de Dados**: Caminhos de arquivos CSV e tempo de retenção  
+6. **Simulação**: Parâmetros para testes com o gerador de dados  
 
-1. **Freezer Info**: Model name, location, operator details
-2. **Temperature Thresholds**: Min/max/critical limits for each zone
-3. **Data Collection**: Reading intervals, chart refresh rates
-4. **Email Alerts**: SMTP settings, cooldown periods, trigger thresholds
-5. **Data Logging**: CSV file paths, retention periods
-6. **Simulation**: Testing parameters for data generator
+### Exportação de Dados
 
-### Exporting Data
+1. Acesse a página **Exportar Dados**  
+2. Selecione o intervalo de tempo (horas de histórico)  
+3. Clique em **Exportar para CSV**  
+4. Baixe o arquivo gerado  
 
-1. Navigate to **Data Export** page
-2. Select time range (hours of historical data)
-3. Click **Export to CSV**
-4. Download the generated file
+### Indicadores de Status
 
-### Understanding Status Indicators
+- **🟢 OK**: Temperatura dentro da faixa normal  
+- **🟡 AVISO**: Temperatura fora do normal, mas ainda não crítica  
+- **🔴 CRÍTICO**: Temperatura ultrapassou o limite crítico — alerta disparado!  
 
-- **🟢 OK**: Temperature within normal range
-- **🟡 WARNING**: Temperature outside normal range but not critical
-- **🔴 CRITICAL**: Temperature beyond critical thresholds - Alert triggered!
+## Sistema de Alertas
 
-## Alert System
+O sistema envia alertas por e-mail quando:  
+1. A temperatura ultrapassa os limites críticos  
+2. Leituras críticas consecutivas são detectadas (configurável)  
+3. O período de espera entre alertas já foi atingido (evita spam)  
 
-The system sends email alerts when:
-1. Temperature exceeds critical thresholds
-2. Multiple consecutive critical readings occur (configurable)
-3. Cooldown period has elapsed since last alert (prevents spam)
+Os e-mails de alerta incluem:  
+- Data e hora do evento  
+- Informações do freezer  
+- Leituras atuais das três zonas  
+- Indicadores de status  
+- Limites configurados  
+- Ações recomendadas para o operador  
 
-Alert emails include:
-- Timestamp and freezer information
-- Current readings for all zones
-- Status indicators
-- Configured temperature thresholds
-- Actionable information for operators
+## Registro de Dados
 
-## Data Logging
+Todas as leituras de temperatura são registradas automaticamente em arquivos CSV:  
+- Local padrão: `data/temperature_logs.csv`  
+- Inclui: timestamp, temperaturas das zonas e status  
+- Limpeza automática com base no período de retenção  
+- Possibilidade de exportação por intervalos personalizados  
 
-All temperature readings are automatically logged to CSV files:
-- Default location: `data/temperature_logs.csv`
-- Includes: timestamp, all temperatures, status flags
-- Automatic cleanup based on retention period
-- Export capability for custom time ranges
+## Modo de Simulação
 
-## Simulation Mode
+O simulador interno gera dados de temperatura realistas:  
+- **Operação normal**: Oscilações dentro da faixa configurada  
+- **Modo de falha**: Eventos críticos aleatórios para testar o sistema de alerta  
+- **Probabilidade e duração da falha configuráveis**  
+- **Transições de temperatura suaves**  
 
-The built-in simulator generates realistic temperature data:
-- Normal operation: Temperature oscillates within configured range
-- Failure mode: Random critical events to test alert system
-- Configurable failure probability and duration
-- Smooth temperature transitions
-
-## File Structure
+## Estrutura de Arquivos
 
 ```
-├── app.py                      # Main Streamlit application
-├── config_manager.py           # Configuration management
-├── data_simulator.py           # Temperature data simulator
-├── email_notifier.py           # Email alert system
-├── data_logger.py              # CSV logging and data management
-├── config_panel.py             # Configuration UI
-├── data_export_panel.py        # Data export UI
-├── system_info_panel.py        # System information UI
-├── freezer_config.json         # System configuration (auto-generated)
-├── data/                       # CSV log files
-└── exports/                    # Exported data files
+├── app.py                      # Aplicação principal Streamlit
+├── config_manager.py           # Gerenciamento de configurações
+├── data_simulator.py           # Simulador de dados de temperatura
+├── email_notifier.py           # Sistema de alertas por e-mail
+├── data_logger.py              # Registro e gerenciamento de dados CSV
+├── config_panel.py             # Interface de configurações
+├── data_export_panel.py        # Interface de exportação de dados
+├── system_info_panel.py        # Interface de informações do sistema
+├── freezer_config.json         # Configuração do sistema (gerado automaticamente)
+├── data/                       # Arquivos de log CSV
+└── exports/                    # Arquivos exportados
 ```
 
-## Security Best Practices
+## Boas Práticas de Segurança
 
-1. **Never commit credentials**: SMTP passwords are stored in environment variables only
-2. **Use app-specific passwords**: Create dedicated passwords for email alerts
-3. **Restrict file access**: Ensure configuration files have appropriate permissions
-4. **Regular updates**: Keep dependencies updated for security patches
+1. **Nunca salve credenciais**: Senhas SMTP devem estar apenas em variáveis de ambiente  
+2. **Use senhas de aplicativo**: Crie senhas específicas para alertas de e-mail  
+3. **Restrinja o acesso a arquivos**: Garanta permissões adequadas nos arquivos de configuração  
+4. **Mantenha o sistema atualizado**: Atualize dependências regularmente para corrigir vulnerabilidades  
 
-## Troubleshooting
+## Solução de Problemas
 
-### Email Alerts Not Working
+### Alertas por E-mail Não Funcionam
 
-1. Check that `SMTP_PASSWORD` environment variable is set
-2. Verify SMTP server and port settings
-3. Ensure sender email is correct
-4. Check recipient email addresses
-5. Use "Test Email Connection" button in Configuration
+1. Verifique se a variável `SMTP_PASSWORD` está definida  
+2. Confirme as configurações do servidor e porta SMTP  
+3. Verifique se o e-mail do remetente está correto  
+4. Confira os endereços dos destinatários  
+5. Utilize o botão **Testar Conexão de E-mail** em Configurações  
 
-### Dashboard Not Updating
+### Painel Não Atualiza
 
-1. Check that the Server workflow is running
-2. Verify browser is not blocking auto-refresh
-3. Check browser console for errors
-4. Refresh the page manually
+1. Confirme se o fluxo do servidor está ativo  
+2. Verifique se o navegador não bloqueia a atualização automática  
+3. Consulte o console do navegador para possíveis erros  
+4. Atualize a página manualmente  
 
-### No Historical Data
+### Sem Dados Históricos
 
-1. Verify CSV logging is enabled in Configuration
-2. Check that `data/` directory exists
-3. Ensure sufficient disk space
-4. Check file permissions
+1. Verifique se o registro CSV está habilitado em Configurações  
+2. Confirme se o diretório `data/` existe  
+3. Garanta que há espaço suficiente em disco  
+4. Verifique as permissões de arquivo  
 
-## Support
+## Suporte
 
-For issues, questions, or feature requests:
-- Contact: operator@fastbombas.com
-- System Version: 1.0.0
+Para dúvidas, problemas ou solicitações de novos recursos:  
+- Contato: operator@fastbombas.com  
+- Versão do Sistema: 1.0.0  
 
-## License
+## Licença
 
-Proprietary - FAST BOMBAS Industrial Systems
+Proprietário - FAST BOMBAS Industrial Systems  
 
 ---
 
-**Developed for FAST BOMBAS industrial freezer monitoring**
+**Desenvolvido para o monitoramento de freezers industriais FAST BOMBAS**
