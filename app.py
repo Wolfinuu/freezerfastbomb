@@ -281,7 +281,11 @@ def main_dashboard():
             evap_thresholds['min'],
             evap_thresholds['max']
         )
-        st.plotly_chart(fig_evap, width='stretch')
+        st.plotly_chart(
+            fig_evap,
+            width='stretch',
+            config={"displayModeBar": False}
+        )
         st.markdown(f"Status: {get_status_badge(status['evaporator'])}", unsafe_allow_html=True)
     
     # Medidor do condensador
@@ -297,7 +301,11 @@ def main_dashboard():
             cond_thresholds['min'],
             cond_thresholds['max']
         )
-        st.plotly_chart(fig_cond, width='stretch')
+        st.plotly_chart(
+            fig_evap,
+            width='stretch',
+            config={"displayModeBar": False}
+        )
         st.markdown(f"Status: {get_status_badge(status['condenser'])}", unsafe_allow_html=True)
     
     # Medidor ambiente
@@ -313,7 +321,11 @@ def main_dashboard():
             amb_thresholds['min'],
             amb_thresholds['max']
         )
-        st.plotly_chart(fig_amb, width='stretch')
+        st.plotly_chart(
+            fig_evap,
+            width='stretch',
+            config={"displayModeBar": False}
+        )
         st.markdown(f"Status: {get_status_badge(status['ambient'])}", unsafe_allow_html=True)
     
     st.markdown("---")
@@ -326,7 +338,11 @@ def main_dashboard():
     
     if not recent_df.empty:
         trend_fig = create_trend_chart(recent_df)
-        st.plotly_chart(trend_fig, width='stretch')
+        st.plotly_chart(
+            fig_evap,
+            width='stretch',
+            config={"displayModeBar": False}
+        )
     else:
         st.info("Nenhum dado histórico disponível ainda. Os dados aparecerão conforme as leituras forem coletadas.")
     
