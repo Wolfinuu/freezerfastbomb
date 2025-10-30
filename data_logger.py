@@ -107,10 +107,10 @@ class DataLogger:
                 return df
             
             # Convert timestamp to datetime
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df["timestamp"] = pd.to_datetime(df["timestamp"]).dt.tz_localize("America/Sao_Paulo", nonexistent="shift_forward", ambiguous="NaT")
             
             # Filter by time range
-            cutoff_time = datetime.now(ZoneInfo("America/Sao_Paulo")) - timedelta(hours=hours)
+            cutoff_time = datetime.now(ZoneInfo("America/Sao_Paulo")) - timedelta(hours=2)
             df = df[df['timestamp'] >= cutoff_time]
             
             # Sort by timestamp
@@ -142,7 +142,7 @@ class DataLogger:
                 return df
             
             # Convert timestamp to datetime
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df["timestamp"] = pd.to_datetime(df["timestamp"]).dt.tz_localize("America/Sao_Paulo", nonexistent="shift_forward", ambiguous="NaT")
             
             # Get last N rows
             df = df.tail(count)
@@ -218,7 +218,7 @@ class DataLogger:
             original_count = len(df)
             
             # Convert timestamp to datetime
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df["timestamp"] = pd.to_datetime(df["timestamp"]).dt.tz_localize("America/Sao_Paulo", nonexistent="shift_forward", ambiguous="NaT")
             
             # Filter data within retention period
             cutoff_date = datetime.now(ZoneInfo("America/Sao_Paulo")) - timedelta(days=retention_days)
